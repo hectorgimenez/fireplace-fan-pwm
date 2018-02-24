@@ -11,11 +11,11 @@
 #define PWM_OUTPUT_PIN 14 // PWM Output Pin
 
 // PID Controller Settings
-#define DESIRED_TEMP 40
-#define OUTPUT_MIN 100
-#define OUTPUT_MAX PWMRANGE
-#define KP -40
-#define KI -1
+#define DESIRED_TEMP 44
+#define OUTPUT_MIN 280
+#define OUTPUT_MAX 800
+#define KP -60
+#define KI -0.7
 #define KD -0
 
 OneWire oneWire(ONE_WIRE_BUS);
@@ -53,14 +53,18 @@ void loop() {
       if (DEBUG) {
         Serial.print("Temperature: ");
         Serial.println(temperature);
-        Serial.print("PWM Output: ");
-        Serial.println(pwmPower);
         Serial.print("setPoint: ");
         Serial.println(setPoint);
+        Serial.print("Status: ");
+        Serial.println(fanStarted);
       }
 
       if (temperature > DESIRED_TEMP) {
         startFanIfNeeded();
+        if (DEBUG) {
+          Serial.print("PWM Output: ");
+          Serial.println(pwmPower);
+        }
         analogWrite(PWM_OUTPUT_PIN, pwmPower);
       }
 
