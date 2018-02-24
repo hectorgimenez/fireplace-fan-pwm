@@ -51,7 +51,7 @@ void setup() {
 void loop() {
     if (updateTemperature()) {
       if (DEBUG) {
-        Serial.print("Temperature: " + temperature);
+        Serial.print("Temperature: ");
         Serial.println(temperature);
         Serial.print("PWM Output: ");
         Serial.println(pwmPower);
