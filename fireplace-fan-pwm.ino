@@ -59,7 +59,7 @@ void loop() {
         Serial.println(fanStarted);
       }
 
-      if (temperature > DESIRED_TEMP) {
+      if (fanStarted || temperature > DESIRED_TEMP) {
         startFanIfNeeded();
         if (DEBUG) {
           Serial.print("PWM Output: ");
